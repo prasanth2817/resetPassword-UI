@@ -13,11 +13,17 @@ function ForgotPassword() {
         try {
             let res= await AxiosService.post("/user/forgot-password",{email})
             if(res.status===200){
-              console.log(res.data.message);
               toast.success(res.data.message)
             }
         } catch (error) {
-            toast.error(error.response.data.message || "Error Occoured! Please try after some time")
+          if (error.response.status === 401) {
+            // Token expired, display notification to the user
+            toast.error("Password reset link has expired. Please initiate the process again.");
+          } else {
+            toast.error(
+              error.response.data.message || "Error Occurred! Please try after some time"
+            );
+          }
         }
     }
   return <>

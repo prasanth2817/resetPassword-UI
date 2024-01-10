@@ -17,9 +17,7 @@ function SignUp() {
         e.preventDefault()
         try {
             const res= await AxiosService.post("/user/create",{firstName,lastName,email,password})
-            console.log(res.data,res.status);
             if(res.status===201){
-              console.log(res.data.message);
               navigate("/")
               toast.success(res.data.message);
             } 

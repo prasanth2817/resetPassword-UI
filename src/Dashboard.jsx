@@ -8,11 +8,10 @@ function Dashboard() {
   const getUsers = async () => {
     try {
       let res = await AxiosService.get(`/user`);
-      console.log(res);
-      if (res.status === 200) console.log(res.data.users);
+      if (res.status === 200)
       setData(res.data.users);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
   useEffect(() => {

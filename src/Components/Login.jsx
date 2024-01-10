@@ -16,7 +16,6 @@ const validateLogin=async(e)=>{
         e.preventDefault()
 try {
     const res= await AxiosService.post("/user/login",{email,password})
-    console.log(res.data,res.status);
     if(res.status===200){
         toast.success(res.data.message)
         sessionStorage.setItem("token",res.data.token)

@@ -15,7 +15,6 @@ function ResetPassword() {
   let {token}= useParams();
 
   const validatePassword=async(e)=>{
-    console.log(token);
     e.preventDefault()
     try {
       let res = await AxiosService.post("/user/reset-password",{
@@ -27,7 +26,6 @@ function ResetPassword() {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(res.data,res.status,token);
     if(res.status===200){
       toast.success(res.data.message)
       navigate("/")
